@@ -5,11 +5,11 @@ import { colors } from '../utils/index';
 
 const { PRIMARY_COLOR, SECONDARY_COLOR } = colors;
 
-interface Props {
+interface IWeatherInfoProps {
     currentWeather: IWeather;
 }
 
-const WeatherInfo: React.FC<Props> = ({ currentWeather }) => {
+const WeatherInfo: React.FC<IWeatherInfoProps> = ({ currentWeather }) => {
     const iconUrl = `https://openweathermap.org/img/wn/${currentWeather.weather_icon}@4x.png`;
     return (
         <View style={styles.weatherInfo}>
@@ -25,6 +25,8 @@ const WeatherInfo: React.FC<Props> = ({ currentWeather }) => {
         </View>
     );
 };
+
+export default WeatherInfo;
 
 const styles = StyleSheet.create({
     weatherInfo: {
@@ -48,5 +50,3 @@ const styles = StyleSheet.create({
         marginTop: 18,
     },
 });
-
-export default WeatherInfo;

@@ -6,11 +6,14 @@ import { IWeather } from '../interfaces';
 
 const { PRIMARY_COLOR, SECONDARY_COLOR, BORDER_COLOR } = colors;
 
-interface Props {
+interface IWeatherDetailsProps {
     currentWeather: IWeather;
     unitsSystem: string;
 }
-const WeatherDetails: React.FC<Props> = ({ currentWeather, unitsSystem }) => {
+const WeatherDetails: React.FC<IWeatherDetailsProps> = ({
+    currentWeather,
+    unitsSystem,
+}) => {
     const windSpeed =
         unitsSystem === 'metric'
             ? `${Math.round(currentWeather.wind_speed)} m/s`

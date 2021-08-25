@@ -3,11 +3,11 @@ import { View, Platform, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../utils/index';
 
-interface Props {
+interface IReloadIconProps {
     load: () => Promise<void>;
 }
 
-const ReloadIcon: React.FC<Props> = ({ load }) => {
+const ReloadIcon: React.FC<IReloadIconProps> = ({ load }) => {
     const reloadIconName = Platform.OS === 'ios' ? 'ios-refresh' : 'md-refresh';
 
     return (
@@ -22,6 +22,8 @@ const ReloadIcon: React.FC<Props> = ({ load }) => {
     );
 };
 
+export default ReloadIcon;
+
 const styles = StyleSheet.create({
     reloadIcon: {
         position: 'absolute',
@@ -29,5 +31,3 @@ const styles = StyleSheet.create({
         right: 20,
     },
 });
-
-export default ReloadIcon;

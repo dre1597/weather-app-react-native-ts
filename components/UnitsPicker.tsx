@@ -2,12 +2,15 @@ import React from 'react';
 import { View, Text, StyleSheet, Platform } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
-interface Props {
+interface IUnitsPickerProps {
     unitsSystem: string;
     setUnitsSystem: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const UnitsPicker: React.FC<Props> = ({ unitsSystem, setUnitsSystem }) => {
+const UnitsPicker: React.FC<IUnitsPickerProps> = ({
+    unitsSystem,
+    setUnitsSystem,
+}) => {
     return (
         <View style={styles.unitsSystem}>
             <Picker
