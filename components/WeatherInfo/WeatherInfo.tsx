@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
-import { IWeather } from '../interfaces';
-import { weatherInfoStyles as styles } from '../styles';
+import { IWeather } from '../../interfaces';
+import { styles } from './WeatherInfoStyles';
 
 interface IWeatherInfoProps {
     currentWeather: IWeather;

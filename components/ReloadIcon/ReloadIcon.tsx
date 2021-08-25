@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { colors } from '../utils/index';
-import { reloadIconStyles as styles } from '../styles';
+import { colors } from '../../utils/index';
+import { styles } from './ReloadIconStyles';
 
 interface IReloadIconProps {
     load: () => Promise<void>;

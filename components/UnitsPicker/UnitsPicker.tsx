@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import { unitsPickerStyles as styles } from '../styles';
+import { styles } from './UnitsPickerStyles';
 
 interface IUnitsPickerProps {
     unitsSystem: string;
