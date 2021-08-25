@@ -2,23 +2,19 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { colors } from '../utils/index';
 import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
+import { IWeather } from '../interfaces';
 
 const { PRIMARY_COLOR, SECONDARY_COLOR, BORDER_COLOR } = colors;
 
 interface Props {
-    currentWeather: any;
-    unitsSystem: any;
+    currentWeather: IWeather;
+    unitsSystem: string;
 }
 const WeatherDetails: React.FC<Props> = ({ currentWeather, unitsSystem }) => {
-    const {
-        main: { feels_like, humidity, pressure },
-        wind: { speed },
-    } = currentWeather;
-
     const windSpeed =
         unitsSystem === 'metric'
-            ? `${Math.round(speed)} m/s`
-            : `${Math.round(speed)} miles/h`;
+            ? `${Math.round(currentWeather.wind_speed)} m/s`
+            : `${Math.round(currentWeather.wind_speed)} miles/h`;
 
     return (
         <View>
@@ -40,7 +36,7 @@ const WeatherDetails: React.FC<Props> = ({ currentWeather, unitsSystem }) => {
                             <View style={styles.weatherDetailsItems}>
                                 <Text>Feels like:</Text>
                                 <Text style={styles.textSecondary}>
-                                    {feels_like}°
+                                    {currentWeather.main_feels_like}°
                                 </Text>
                             </View>
                         </View>
@@ -55,7 +51,7 @@ const WeatherDetails: React.FC<Props> = ({ currentWeather, unitsSystem }) => {
                             <View style={styles.weatherDetailsItems}>
                                 <Text>Humidity:</Text>
                                 <Text style={styles.textSecondary}>
-                                    {humidity}%
+                                    {currentWeather.main_humidity}%
                                 </Text>
                             </View>
                         </View>
@@ -99,7 +95,7 @@ const WeatherDetails: React.FC<Props> = ({ currentWeather, unitsSystem }) => {
                             <View style={styles.weatherDetailsItems}>
                                 <Text>Pressure:</Text>
                                 <Text style={styles.textSecondary}>
-                                    {pressure}hPa
+                                    {currentWeather.main_pressure}hPa
                                 </Text>
                             </View>
                         </View>

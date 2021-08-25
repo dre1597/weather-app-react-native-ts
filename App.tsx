@@ -8,12 +8,13 @@ import ReloadIcon from './components/ReloadIcon';
 import WeatherDetails from './components/WeatherDetails';
 import { colors } from './utils/index';
 import { WEATHER_API_KEY } from '@env';
+import { IWeather } from './interfaces';
 
 const BASE_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather?';
 
 export default function App() {
     const [errorMessage, setErrorMessage] = useState<string>();
-    const [currentWeather, setCurrentWeather] = useState<any>();
+    const [currentWeather, setCurrentWeather] = useState<IWeather>();
     const [unitsSystem, setUnitsSystem] = useState('metric');
 
     useEffect(() => {
@@ -21,7 +22,7 @@ export default function App() {
     }, [unitsSystem]);
 
     async function load() {
-        setCurrentWeather(null);
+        setCurrentWeather(undefined);
         setErrorMessage('');
         try {
             let { status } = await Location.requestForegroundPermissionsAsync();
@@ -44,7 +45,25 @@ export default function App() {
             const result = await response.json();
 
             if (response.ok) {
-                setCurrentWeather(result);
+                const {
+                    main: { feels_like, temp, humidity, pressure },
+                    wind: { speed },
+                    name,
+                    weather: [details],
+                } = result;
+
+                const { icon, main, description } = details;
+                setCurrentWeather({
+                    main_temp: temp,
+                    main_feels_like: feels_like,
+                    main_humidity: humidity,
+                    main_pressure: pressure,
+                    wind_speed: speed,
+                    weather_icon: icon,
+                    weather_main: main,
+                    weather_description: description,
+                    name,
+                });
             } else {
                 setErrorMessage(result.message);
             }

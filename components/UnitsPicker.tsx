@@ -3,8 +3,8 @@ import { View, Text, StyleSheet, Platform } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
 interface Props {
-    unitsSystem: any;
-    setUnitsSystem: any;
+    unitsSystem: string;
+    setUnitsSystem: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const UnitsPicker: React.FC<Props> = ({ unitsSystem, setUnitsSystem }) => {

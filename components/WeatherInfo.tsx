@@ -1,29 +1,27 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
+import { IWeather } from '../interfaces';
 import { colors } from '../utils/index';
 
 const { PRIMARY_COLOR, SECONDARY_COLOR } = colors;
 
 interface Props {
-    currentWeather: any;
+    currentWeather: IWeather;
 }
 
 const WeatherInfo: React.FC<Props> = ({ currentWeather }) => {
-    const {
-        main: { temp },
-        weather: [details],
-        name,
-    } = currentWeather;
-
-    const { icon, main, description } = details;
-    const iconUrl = `https://openweathermap.org/img/wn/${icon}@4x.png`;
+    const iconUrl = `https://openweathermap.org/img/wn/${currentWeather.weather_icon}@4x.png`;
     return (
         <View style={styles.weatherInfo}>
-            <Text>{name}</Text>
+            <Text>{currentWeather.name}</Text>
             <Image style={styles.weatherIcon} source={{ uri: iconUrl }} />
-            <Text style={styles.textPrimary}>{temp}°</Text>
-            <Text style={styles.weatherDescription}>{description}</Text>
-            <Text style={styles.textSecondary}>{main}</Text>
+            <Text style={styles.textPrimary}>{currentWeather.main_temp}°</Text>
+            <Text style={styles.weatherDescription}>
+                {currentWeather.weather_description}
+            </Text>
+            <Text style={styles.textSecondary}>
+                {currentWeather.weather_main}
+            </Text>
         </View>
     );
 };

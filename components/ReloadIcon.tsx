@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../utils/index';
 
 interface Props {
-    load: any;
+    load: () => Promise<void>;
 }
 
 const ReloadIcon: React.FC<Props> = ({ load }) => {
