@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Platform, StyleSheet } from 'react-native';
+import { View, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../utils/index';
+import { reloadIconStyles as styles } from '../styles';
 
 interface IReloadIconProps {
     load: () => Promise<void>;
@@ -23,11 +24,3 @@ const ReloadIcon: React.FC<IReloadIconProps> = ({ load }) => {
 };
 
 export default ReloadIcon;
-
-const styles = StyleSheet.create({
-    reloadIcon: {
-        position: 'absolute',
-        top: 30,
-        right: 20,
-    },
-});

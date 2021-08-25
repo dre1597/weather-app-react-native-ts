@@ -1,9 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import { IWeather } from '../interfaces';
-import { colors } from '../utils/index';
-
-const { PRIMARY_COLOR, SECONDARY_COLOR } = colors;
+import { weatherInfoStyles as styles } from '../styles';
 
 interface IWeatherInfoProps {
     currentWeather: IWeather;
@@ -27,26 +25,3 @@ const WeatherInfo: React.FC<IWeatherInfoProps> = ({ currentWeather }) => {
 };
 
 export default WeatherInfo;
-
-const styles = StyleSheet.create({
-    weatherInfo: {
-        alignItems: 'center',
-    },
-    weatherDescription: {
-        textTransform: 'capitalize',
-    },
-    weatherIcon: {
-        width: 100,
-        height: 100,
-    },
-    textPrimary: {
-        fontSize: 40,
-        color: PRIMARY_COLOR,
-    },
-    textSecondary: {
-        fontSize: 28,
-        color: SECONDARY_COLOR,
-        fontWeight: '500',
-        marginTop: 18,
-    },
-});

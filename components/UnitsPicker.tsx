@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, Platform } from 'react-native';
+import { View } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import { unitsPickerStyles as styles } from '../styles';
 
 interface IUnitsPickerProps {
     unitsSystem: string;
@@ -27,21 +28,3 @@ const UnitsPicker: React.FC<IUnitsPickerProps> = ({
 };
 
 export default UnitsPicker;
-
-const styles = StyleSheet.create({
-    unitsSystem: {
-        top: 0,
-        ...Platform.select({
-            ios: {
-                top: -20,
-            },
-            android: {
-                top: 30,
-            },
-        }),
-        left: 20,
-        position: 'absolute',
-        height: 50,
-        width: 100,
-    },
-});
