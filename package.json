@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-picker/picker": "1.16.1",
     "@types/react-native-dotenv": "^0.2.0",
     "expo": "~42.0.1",
     "expo-location": "~12.1.2",
