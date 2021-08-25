@@ -1,8 +1,9 @@
 import React from 'react';
 import HomeScreen from './src/screens/Home';
+import SearchScreen from './src/screens/Search';
 
 const App: React.FC = () => {
-    return <HomeScreen />;
+    return <SearchScreen />;
 };
 
 export default App;

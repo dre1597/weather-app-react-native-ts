@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { colors } from '../../utils';
+import { colors } from '../../../utils';
 import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
-import { IWeather } from '../../interfaces';
+import { IWeather } from '../../../interfaces';
 import { styles } from './styles';
 
 const { PRIMARY_COLOR, BORDER_COLOR } = colors;

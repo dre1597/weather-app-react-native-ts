@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { colors } from '../../utils';
+import { colors } from '../../../utils';
 import { styles } from './styles';
 
 interface IReloadIconProps {
