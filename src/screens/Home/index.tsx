@@ -13,7 +13,7 @@ import { styles } from './styles';
 
 const BASE_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather?';
 
-const Home: React.FC = () => {
+const HomeScreen: React.FC = () => {
     const [errorMessage, setErrorMessage] = useState<string>();
     const [currentWeather, setCurrentWeather] = useState<IWeather>();
     const [unitsSystem, setUnitsSystem] = useState('metric');
@@ -109,4 +109,4 @@ const Home: React.FC = () => {
     }
 };
 
-export default Home;
+export default HomeScreen;
