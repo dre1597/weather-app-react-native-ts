@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import { colors } from '../../utils/index';
 import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
 import { IWeather } from '../../interfaces';
-import { styles } from './WeatherDetailsStyles';
+import { styles } from './styles';
 
 const { PRIMARY_COLOR, BORDER_COLOR } = colors;
 
