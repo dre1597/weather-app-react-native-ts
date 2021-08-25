@@ -13,7 +13,7 @@ const WeatherInfo: React.FC<IWeatherInfoProps> = ({ currentWeather }) => {
         <View style={styles.weatherInfo}>
             <Text>{currentWeather.name}</Text>
             <Image style={styles.weatherIcon} source={{ uri: iconUrl }} />
-            <Text style={styles.textPrimary}>{currentWeather.main_temp}°</Text>
+            <Text style={styles.textPrimary}>{currentWeather.temp}°</Text>
             <Text style={styles.weatherDescription}>
                 {currentWeather.weather_description}
             </Text>

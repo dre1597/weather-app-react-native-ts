@@ -12,13 +12,13 @@ interface IWeatherDetailsProps {
     unitsSystem: string;
 }
 const WeatherDetails: React.FC<IWeatherDetailsProps> = ({
-    currentWeather,
+    currentWeather: { wind_speed, feels_like, humidity, pressure },
     unitsSystem,
 }) => {
     const windSpeed =
         unitsSystem === 'metric'
-            ? `${Math.round(currentWeather.wind_speed)} m/s`
-            : `${Math.round(currentWeather.wind_speed)} miles/h`;
+            ? `${Math.round(wind_speed)} m/s`
+            : `${Math.round(wind_speed)} miles/h`;
 
     return (
         <View>
@@ -40,7 +40,7 @@ const WeatherDetails: React.FC<IWeatherDetailsProps> = ({
                             <View style={styles.weatherDetailsItems}>
                                 <Text>Feels like:</Text>
                                 <Text style={styles.textSecondary}>
-                                    {currentWeather.main_feels_like}°
+                                    {feels_like}°
                                 </Text>
                             </View>
                         </View>
@@ -55,7 +55,7 @@ const WeatherDetails: React.FC<IWeatherDetailsProps> = ({
                             <View style={styles.weatherDetailsItems}>
                                 <Text>Humidity:</Text>
                                 <Text style={styles.textSecondary}>
-                                    {currentWeather.main_humidity}%
+                                    {humidity}%
                                 </Text>
                             </View>
                         </View>
@@ -99,7 +99,7 @@ const WeatherDetails: React.FC<IWeatherDetailsProps> = ({
                             <View style={styles.weatherDetailsItems}>
                                 <Text>Pressure:</Text>
                                 <Text style={styles.textSecondary}>
-                                    {currentWeather.main_pressure}hPa
+                                    {pressure}hPa
                                 </Text>
                             </View>
                         </View>

@@ -54,10 +54,10 @@ const App: React.FC = () => {
 
                 const { icon, main, description } = details;
                 setCurrentWeather({
-                    main_temp: temp,
-                    main_feels_like: feels_like,
-                    main_humidity: humidity,
-                    main_pressure: pressure,
+                    temp,
+                    feels_like,
+                    humidity,
+                    pressure,
                     wind_speed: speed,
                     weather_icon: icon,
                     weather_main: main,
