@@ -12,7 +12,7 @@ import { IWeather } from './interfaces';
 
 const BASE_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather?';
 
-export default function App() {
+const App: React.FC = () => {
     const [errorMessage, setErrorMessage] = useState<string>();
     const [currentWeather, setCurrentWeather] = useState<IWeather>();
     const [unitsSystem, setUnitsSystem] = useState('metric');
@@ -106,7 +106,9 @@ export default function App() {
             </View>
         );
     }
-}
+};
+
+export default App;
 
 const styles = StyleSheet.create({
     container: {
