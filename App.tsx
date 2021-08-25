@@ -2,13 +2,13 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import * as Location from 'expo-location';
-import WeatherInfo from './components/WeatherInfo';
-import UnitsPicker from './components/UnitsPicker';
-import ReloadIcon from './components/ReloadIcon';
-import WeatherDetails from './components/WeatherDetails';
-import { colors } from './utils/index';
+import WeatherInfo from './src/components/WeatherInfo';
+import UnitsPicker from './src/components/UnitsPicker';
+import ReloadIcon from './src/components/ReloadIcon';
+import WeatherDetails from './src/components/WeatherDetails';
+import { colors } from './src/utils/index';
 import { WEATHER_API_KEY } from '@env';
-import { IWeather } from './interfaces';
+import { IWeather } from './src/interfaces';
 
 const BASE_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather?';
 
