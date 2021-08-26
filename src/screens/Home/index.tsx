@@ -6,7 +6,7 @@ import WeatherInfo from '../../components/Home/WeatherInfo';
 import UnitsPicker from '../../components/Home/UnitsPicker';
 import ReloadIcon from '../../components/Home/ReloadIcon';
 import WeatherDetails from '../../components/Home/WeatherDetails';
-import { theme } from '../../globals/theme';
+import { theme } from '../../globals/styles/theme';
 import { WEATHER_API_KEY } from '@env';
 import { IWeather } from '../../interfaces';
 import { styles } from './styles';

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { theme } from '../../../globals/theme';
+import { theme } from '../../../globals/styles/theme';
 
 export const styles = StyleSheet.create({
     weatherInfo: {

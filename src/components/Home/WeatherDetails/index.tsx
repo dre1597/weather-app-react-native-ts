@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { theme } from '../../../globals/theme';
+import { theme } from '../../../globals/styles/theme';
 import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
 import { IWeather } from '../../../interfaces';
 import { styles } from './styles';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { styles } from './styles';
-import { theme } from '../../../globals/theme';
+import { theme } from '../../../globals/styles/theme';
 import { AntDesign } from '@expo/vector-icons';
 
 const SearchItem: React.FC = () => {
