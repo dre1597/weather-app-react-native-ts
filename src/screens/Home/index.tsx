@@ -1,7 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Text, View, ActivityIndicator } from 'react-native';
-import * as Location from 'expo-location';
 import WeatherInfo from '../../components/Home/WeatherInfo';
 import UnitsPicker from '../../components/Home/UnitsPicker';
 import ReloadIcon from '../../components/Home/ReloadIcon';
@@ -11,6 +10,8 @@ import { WEATHER_API_KEY } from '@env';
 import { IWeather } from '../../interfaces';
 import { styles } from './styles';
 import { getUserLocation } from '../../utils';
+import { useDispatch, useSelector } from 'react-redux';
+import { weatherActions } from '../../store/weather';
 
 const BASE_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather?';
 
@@ -18,13 +19,24 @@ const HomeScreen: React.FC = () => {
     const [errorMessage, setErrorMessage] = useState<string>();
     const [currentWeather, setCurrentWeather] = useState<IWeather>();
     const [unitsSystem, setUnitsSystem] = useState('metric');
+    const getCurrentWeather = useSelector((state: any) => state.weather);
+    const currentWeatherRef = useRef<IWeather | undefined>();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         load();
-    }, [unitsSystem]);
+    }, [unitsSystem, getCurrentWeather]);
+
+    useEffect(() => {
+        if (getCurrentWeather) {
+            currentWeatherRef.current = getCurrentWeather;
+        }
+        if (currentWeatherRef.current) {
+            setCurrentWeather(currentWeatherRef.current);
+        }
+    });
 
     async function load() {
-        setCurrentWeather(undefined);
         setErrorMessage('');
         try {
             const userLocation = await getUserLocation();
@@ -51,17 +63,19 @@ const HomeScreen: React.FC = () => {
                 } = result;
 
                 const { icon, main, description } = details;
-                setCurrentWeather({
-                    temp,
-                    feels_like,
-                    humidity,
-                    pressure,
-                    wind_speed: speed,
-                    weather_icon: icon,
-                    weather_main: main,
-                    weather_description: description,
-                    name,
-                });
+                dispatch(
+                    weatherActions.setCurrentWeather({
+                        temp,
+                        feels_like,
+                        humidity,
+                        pressure,
+                        wind_speed: speed,
+                        weather_icon: icon,
+                        weather_main: main,
+                        weather_description: description,
+                        name,
+                    })
+                );
             } else {
                 setErrorMessage(result.message);
             }

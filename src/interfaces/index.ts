@@ -1,5 +1,5 @@
 export interface IWeather {
-    temp: string;
+    temp: number;
     feels_like: number;
     humidity: number;
     pressure: number;

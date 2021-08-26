@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
                 top: -20,
             },
             android: {
-                top: 30,
+                top: 50,
             },
         }),
         left: 20,
