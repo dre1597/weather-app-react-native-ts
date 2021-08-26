@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../../utils';
+import { theme } from '../../../globals/theme';
 
 export const styles = StyleSheet.create({
     container: {
@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     btn: {
-        backgroundColor: colors.PRIMARY_COLOR,
+        backgroundColor: theme.colors.PRIMARY_COLOR,
         width: 130,
         alignItems: 'center',
         justifyContent: 'center',

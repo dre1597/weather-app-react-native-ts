@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../../utils';
+import { theme } from '../../../globals/theme';
 
 export const styles = StyleSheet.create({
     weatherInfo: {
@@ -14,11 +14,11 @@ export const styles = StyleSheet.create({
     },
     textPrimary: {
         fontSize: 40,
-        color: colors.PRIMARY_COLOR,
+        color: theme.colors.PRIMARY_COLOR,
     },
     textSecondary: {
         fontSize: 28,
-        color: colors.SECONDARY_COLOR,
+        color: theme.colors.SECONDARY_COLOR,
         fontWeight: '500',
         marginTop: 18,
     },

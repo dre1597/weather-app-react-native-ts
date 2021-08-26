@@ -6,7 +6,7 @@ import WeatherInfo from '../../components/Home/WeatherInfo';
 import UnitsPicker from '../../components/Home/UnitsPicker';
 import ReloadIcon from '../../components/Home/ReloadIcon';
 import WeatherDetails from '../../components/Home/WeatherDetails';
-import { colors } from '../../utils';
+import { theme } from '../../globals/theme';
 import { WEATHER_API_KEY } from '@env';
 import { IWeather } from '../../interfaces';
 import { styles } from './styles';
@@ -103,7 +103,10 @@ const HomeScreen: React.FC = () => {
         return (
             <View style={styles.container}>
                 <Text>{errorMessage}</Text>
-                <ActivityIndicator size='large' color={colors.PRIMARY_COLOR} />
+                <ActivityIndicator
+                    size='large'
+                    color={theme.colors.PRIMARY_COLOR}
+                />
             </View>
         );
     }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { styles } from './styles';
-import { colors } from '../../../utils';
+import { theme } from '../../../globals/theme';
 import { AntDesign } from '@expo/vector-icons';
 
 const SearchItem: React.FC = () => {
@@ -17,7 +17,7 @@ const SearchItem: React.FC = () => {
                         <AntDesign
                             name='arrowright'
                             size={24}
-                            color={colors.PRIMARY_COLOR}
+                            color={theme.colors.PRIMARY_COLOR}
                         />
                     </Text>
                 </View>

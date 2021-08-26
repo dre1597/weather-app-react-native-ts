@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../../utils';
+import { theme } from '../../../globals/theme';
 
 export const styles = StyleSheet.create({
     prevSearchesTitle: {
@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     prevSearchesItemRight: {
-        borderLeftColor: colors.PRIMARY_COLOR,
+        borderLeftColor: theme.colors.PRIMARY_COLOR,
         borderLeftWidth: 3,
         paddingHorizontal: 10,
     },

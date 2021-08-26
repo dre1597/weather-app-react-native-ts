@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { colors } from '../../../utils';
+import { theme } from '../../../globals/theme';
 import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
 import { IWeather } from '../../../interfaces';
 import { styles } from './styles';
 
-const { PRIMARY_COLOR, BORDER_COLOR } = colors;
+const { PRIMARY_COLOR, BORDER_COLOR } = theme.colors;
 
 interface IWeatherDetailsProps {
     currentWeather: IWeather;

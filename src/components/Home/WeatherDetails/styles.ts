@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../../utils';
+import { theme } from '../../../globals/theme';
 
 export const styles = StyleSheet.create({
     weatherDetails: {
         margin: 15,
         borderWidth: 1,
-        borderColor: colors.BORDER_COLOR,
+        borderColor: theme.colors.BORDER_COLOR,
         borderRadius: 10,
     },
     weatherDetailsRow: {
@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
     },
     textSecondary: {
         fontSize: 15,
-        color: colors.SECONDARY_COLOR,
+        color: theme.colors.SECONDARY_COLOR,
         fontWeight: '700',
         margin: 7,
     },
