@@ -12,6 +12,7 @@ import { styles } from './styles';
 import { getUserLocation } from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { weatherActions } from '../../store/weather';
+import SearchIcon from '../../components/Home/SearchIcon';
 
 const BASE_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather?';
 
@@ -94,6 +95,7 @@ const HomeScreen: React.FC = () => {
                         setUnitsSystem={setUnitsSystem}
                     />
                     <ReloadIcon load={load} />
+                    <SearchIcon />
                     <WeatherInfo currentWeather={currentWeather} />
                 </View>
                 <WeatherDetails
