@@ -10,6 +10,7 @@ import { theme } from '../../globals/styles/theme';
 import { WEATHER_API_KEY } from '@env';
 import { IWeather } from '../../interfaces';
 import { styles } from './styles';
+import { getUserLocation } from '../../utils';
 
 const BASE_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather?';
 
@@ -26,18 +27,14 @@ const HomeScreen: React.FC = () => {
         setCurrentWeather(undefined);
         setErrorMessage('');
         try {
-            let { status } = await Location.requestForegroundPermissionsAsync();
+            const userLocation = await getUserLocation();
 
-            if (status !== 'granted') {
-                setErrorMessage('Access to location is needed to run the app');
+            if (userLocation.errorMessage) {
+                setErrorMessage(userLocation.errorMessage);
                 return;
             }
 
-            const location = await Location.getCurrentPositionAsync({
-                accuracy: Location.Accuracy.High,
-            });
-
-            const { latitude, longitude } = location.coords;
+            const { latitude, longitude } = userLocation;
 
             const weatherUrl = `${BASE_WEATHER_URL}lat=${latitude}&lon=${longitude}&units=${unitsSystem}&appid=${WEATHER_API_KEY}`;
 

@@ -3,7 +3,7 @@ import HomeScreen from './src/screens/Home';
 import SearchScreen from './src/screens/Search';
 
 const App: React.FC = () => {
-    return <SearchScreen />;
+    return <HomeScreen />;
 };
 
 export default App;

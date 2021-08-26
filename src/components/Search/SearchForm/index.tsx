@@ -8,6 +8,11 @@ import SearchFormButton from '../SearchFormButton';
 
 const SearchForm: React.FC = () => {
     const [text, onChangeText] = useState('');
+
+    const submitHandler = () => {};
+
+    const getLocationHandler = () => {};
+
     return (
         <>
             <StatusBar style='auto' />
@@ -19,15 +24,15 @@ const SearchForm: React.FC = () => {
                     value={text}
                     placeholder='Your city'
                     keyboardType='default'
-                ></TextInput>
+                />
             </View>
             <View style={styles.btnContainer}>
-                <SearchFormButton onPress={() => alert('pressed')}>
+                <SearchFormButton onPress={submitHandler}>
                     <Text style={{ color: '#ffffff', fontSize: 18 }}>
                         Submit
                     </Text>
                 </SearchFormButton>
-                <SearchFormButton onPress={() => alert('pressed')}>
+                <SearchFormButton onPress={getLocationHandler}>
                     <MaterialIcons
                         name='my-location'
                         size={24}
