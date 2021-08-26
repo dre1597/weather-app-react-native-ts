@@ -25,17 +25,4 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
-    btn: {
-        backgroundColor: theme.colors.PRIMARY_COLOR,
-        width: 130,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 8,
-        paddingHorizontal: 20,
-        paddingVertical: 15,
-    },
-    btnText: {
-        color: '#ffffff',
-        fontSize: 18,
-    },
 });

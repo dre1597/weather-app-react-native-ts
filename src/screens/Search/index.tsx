@@ -1,13 +1,13 @@
 import React from 'react';
 import { View } from 'react-native';
 import { styles } from './styles';
-import CityForm from '../../components/Search/CityForm';
+import SearchForm from '../../components/Search/SearchForm';
 import Previous from '../../components/Search/Previous';
 
 const SearchScreen: React.FC = () => {
     return (
         <View style={styles.container}>
-            <CityForm />
+            <SearchForm />
             <Previous />
         </View>
     );
