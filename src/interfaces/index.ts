@@ -10,6 +10,10 @@ export interface IWeather {
     name: string;
 }
 
+export interface IWeatherInfoList {
+    weatherInfoList: IWeather[];
+}
+
 export interface ILocation {
     longitude?: number;
     latitude?: number;
