@@ -9,3 +9,9 @@ export interface IWeather {
     weather_description: string;
     name: string;
 }
+
+export interface ILocation {
+    longitude?: number;
+    latitude?: number;
+    errorMessage?: string;
+}

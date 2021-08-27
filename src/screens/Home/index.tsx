@@ -6,15 +6,12 @@ import UnitsPicker from '../../components/Home/UnitsPicker';
 import ReloadIcon from '../../components/Home/ReloadIcon';
 import WeatherDetails from '../../components/Home/WeatherDetails';
 import { theme } from '../../globals/styles/theme';
-import { WEATHER_API_KEY } from '@env';
-import { IWeather } from '../../interfaces';
+import { ILocation, IWeather } from '../../interfaces';
 import { styles } from './styles';
-import { getUserLocation } from '../../utils';
+import { getUserLocation, requestInfoByLocation } from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { weatherActions } from '../../store/weather';
 import SearchIcon from '../../components/Home/SearchIcon';
-
-const BASE_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather?';
 
 const HomeScreen: React.FC = () => {
     const [errorMessage, setErrorMessage] = useState<string>();
@@ -40,46 +37,18 @@ const HomeScreen: React.FC = () => {
     async function load() {
         setErrorMessage('');
         try {
-            const userLocation = await getUserLocation();
-
+            const userLocation: ILocation = await getUserLocation();
             if (userLocation.errorMessage) {
                 setErrorMessage(userLocation.errorMessage);
                 return;
             }
-
             const { latitude, longitude } = userLocation;
 
-            const weatherUrl = `${BASE_WEATHER_URL}lat=${latitude}&lon=${longitude}&units=${unitsSystem}&appid=${WEATHER_API_KEY}`;
-
-            const response = await fetch(weatherUrl);
-
-            const result = await response.json();
-
-            if (response.ok) {
-                const {
-                    main: { feels_like, temp, humidity, pressure },
-                    wind: { speed },
-                    name,
-                    weather: [details],
-                } = result;
-
-                const { icon, main, description } = details;
-                dispatch(
-                    weatherActions.setCurrentWeather({
-                        temp,
-                        feels_like,
-                        humidity,
-                        pressure,
-                        wind_speed: speed,
-                        weather_icon: icon,
-                        weather_main: main,
-                        weather_description: description,
-                        name,
-                    })
-                );
-            } else {
-                setErrorMessage(result.message);
-            }
+            requestInfoByLocation({ latitude, longitude }, unitsSystem).then(
+                (response: IWeather) => {
+                    dispatch(weatherActions.setCurrentWeather(response));
+                }
+            );
         } catch (error) {
             setErrorMessage(error.message);
         }
