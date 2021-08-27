@@ -1,6 +1,5 @@
 import * as Location from 'expo-location';
-import { ILocation, IWeather } from '../interfaces';
-import { WEATHER_API_KEY } from '@env';
+import { IWeather } from '../interfaces';
 
 export const getUserLocation = async () => {
     try {
@@ -26,15 +25,8 @@ export const getUserLocation = async () => {
     }
 };
 
-const BASE_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather?';
-
-export const requestInfoByLocation = async (
-    location: ILocation,
-    unitsSystem: string = 'metric'
-): Promise<IWeather> => {
-    const weatherUrl = `${BASE_WEATHER_URL}lat=${location.latitude}&lon=${location.longitude}&units=${unitsSystem}&appid=${WEATHER_API_KEY}`;
-
-    const response = await fetch(weatherUrl);
+export const fetchWeatherInfo = async (url: string): Promise<IWeather> => {
+    const response = await fetch(url);
 
     const result = await response.json();
 

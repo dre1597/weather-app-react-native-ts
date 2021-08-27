@@ -9,17 +9,11 @@ const { PRIMARY_COLOR, BORDER_COLOR } = theme.colors;
 
 interface IWeatherDetailsProps {
     currentWeather: IWeather;
-    unitsSystem: string;
 }
 const WeatherDetails: React.FC<IWeatherDetailsProps> = ({
     currentWeather: { wind_speed, feels_like, humidity, pressure },
-    unitsSystem,
 }) => {
-    const windSpeed =
-        unitsSystem === 'metric'
-            ? `${Math.round(wind_speed)} m/s`
-            : `${Math.round(wind_speed)} miles/h`;
-
+    const windSpeed = `${Math.round(wind_speed)} m/s`;
     return (
         <View>
             <View style={styles.weatherDetails}>

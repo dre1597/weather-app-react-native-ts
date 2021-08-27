@@ -2,28 +2,25 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useRef, useState } from 'react';
 import { Text, View, ActivityIndicator } from 'react-native';
 import WeatherInfo from '../../components/Home/WeatherInfo';
-import UnitsPicker from '../../components/Home/UnitsPicker';
 import ReloadIcon from '../../components/Home/ReloadIcon';
 import WeatherDetails from '../../components/Home/WeatherDetails';
 import { theme } from '../../globals/styles/theme';
 import { ILocation, IWeather } from '../../interfaces';
 import { styles } from './styles';
-import { getUserLocation, requestInfoByLocation } from '../../utils';
+import { fetchWeatherInfo, getUserLocation } from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { weatherActions } from '../../store/weather';
 import SearchIcon from '../../components/Home/SearchIcon';
+import { WEATHER_API_KEY } from '@env';
+
+const BASE_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather?';
 
 const HomeScreen: React.FC = () => {
     const [errorMessage, setErrorMessage] = useState<string>();
     const [currentWeather, setCurrentWeather] = useState<IWeather>();
-    const [unitsSystem, setUnitsSystem] = useState('metric');
     const getCurrentWeather = useSelector((state: any) => state.weather);
     const currentWeatherRef = useRef<IWeather | undefined>();
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        load();
-    }, [unitsSystem, getCurrentWeather]);
 
     useEffect(() => {
         if (getCurrentWeather) {
@@ -32,7 +29,7 @@ const HomeScreen: React.FC = () => {
         if (currentWeatherRef.current) {
             setCurrentWeather(currentWeatherRef.current);
         }
-    });
+    }, [getCurrentWeather]);
 
     async function load() {
         setErrorMessage('');
@@ -44,38 +41,43 @@ const HomeScreen: React.FC = () => {
             }
             const { latitude, longitude } = userLocation;
 
-            requestInfoByLocation({ latitude, longitude }, unitsSystem).then(
-                (response: IWeather) => {
-                    dispatch(weatherActions.setCurrentWeather(response));
-                }
-            );
+            const weatherUrl = `${BASE_WEATHER_URL}lat=${latitude}&lon=${longitude}&units=metric&appid=${WEATHER_API_KEY}`;
+
+            fetchWeatherInfo(weatherUrl).then((response: IWeather) => {
+                dispatch(weatherActions.setCurrentWeather(response));
+            });
         } catch (error) {
             setErrorMessage(error.message);
         }
     }
 
-    if (currentWeather) {
+    if (currentWeather && currentWeather.name !== '') {
         return (
             <View style={styles.container}>
                 <StatusBar style='auto' />
                 <View style={styles.main}>
-                    <UnitsPicker
-                        unitsSystem={unitsSystem}
-                        setUnitsSystem={setUnitsSystem}
-                    />
-                    <ReloadIcon load={load} />
                     <SearchIcon />
+                    <ReloadIcon load={load} />
                     <WeatherInfo currentWeather={currentWeather} />
                 </View>
-                <WeatherDetails
-                    currentWeather={currentWeather}
-                    unitsSystem={unitsSystem}
-                />
+                <WeatherDetails currentWeather={currentWeather} />
+            </View>
+        );
+    } else if (currentWeather && currentWeather.name === '') {
+        return (
+            <View style={styles.container}>
+                <SearchIcon />
+                <ReloadIcon load={load} />
+                <Text style={{ textAlign: 'center' }}>
+                    Please search for a location
+                </Text>
+                <StatusBar style='auto' />
             </View>
         );
     } else if (errorMessage) {
         return (
             <View style={styles.container}>
+                <SearchIcon />
                 <ReloadIcon load={load} />
                 <Text style={{ textAlign: 'center' }}>{errorMessage}</Text>
                 <StatusBar style='auto' />
