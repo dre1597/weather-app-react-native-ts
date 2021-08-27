@@ -31,33 +31,13 @@ const HomeScreen: React.FC = () => {
         }
     }, [getCurrentWeather]);
 
-    async function load() {
-        setErrorMessage('');
-        try {
-            const userLocation: ILocation = await getUserLocation();
-            if (userLocation.errorMessage) {
-                setErrorMessage(userLocation.errorMessage);
-                return;
-            }
-            const { latitude, longitude } = userLocation;
-
-            const weatherUrl = `${BASE_WEATHER_URL}lat=${latitude}&lon=${longitude}&units=metric&appid=${WEATHER_API_KEY}`;
-
-            fetchWeatherInfo(weatherUrl).then((response: IWeather) => {
-                dispatch(weatherActions.setCurrentWeather(response));
-            });
-        } catch (error) {
-            setErrorMessage(error.message);
-        }
-    }
-
     if (currentWeather && currentWeather.name !== '') {
         return (
             <View style={styles.container}>
                 <StatusBar style='auto' />
                 <View style={styles.main}>
                     <SearchIcon />
-                    <ReloadIcon load={load} />
+                    <ReloadIcon />
                     <WeatherInfo currentWeather={currentWeather} />
                 </View>
                 <WeatherDetails currentWeather={currentWeather} />
@@ -67,7 +47,7 @@ const HomeScreen: React.FC = () => {
         return (
             <View style={styles.container}>
                 <SearchIcon />
-                <ReloadIcon load={load} />
+                <ReloadIcon />
                 <Text style={{ textAlign: 'center' }}>
                     Please search for a location
                 </Text>
@@ -78,7 +58,7 @@ const HomeScreen: React.FC = () => {
         return (
             <View style={styles.container}>
                 <SearchIcon />
-                <ReloadIcon load={load} />
+                <ReloadIcon />
                 <Text style={{ textAlign: 'center' }}>{errorMessage}</Text>
                 <StatusBar style='auto' />
             </View>
